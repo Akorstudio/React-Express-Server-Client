@@ -15,7 +15,7 @@ pipeline {
 
     stage('Build-Server') {
       steps {
-        sh 'docker build --rm -t re-server-dev -f ./server/Dockerfile.dev ./server'
+        sh 'docker build -t re-server-dev -f ./server/Dockerfile.dev ./server'
       }
     }
 
