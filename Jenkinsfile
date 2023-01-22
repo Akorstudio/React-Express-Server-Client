@@ -13,9 +13,9 @@ pipeline {
       }
     }
 
-    stage('Build') {
+    stage('Build-Server') {
       steps {
-        sh 'docker-compose -f docker-compose.dev.yml up --build'
+        sh 'docker build --rm -t re-server-dev -f ./server/Dockerfile.dev ./server'
       }
     }
 
