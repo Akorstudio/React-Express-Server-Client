@@ -1,6 +1,6 @@
 # react-express-docker
 <p align="center">
-<img src="https://user-images.githubusercontent.com/4329912/62914955-386be680-bdb0-11e9-936d-4afe3986800e.png" alt="Logo" height="120">
+<img src="https://user-images.githubusercontent.com/12064825/213917034-c874abb5-f424-4ce0-9bd0-511ce37ceff5.png" alt="Logo" height="120">
 </p>
 <p align="center">An example react application with express server as the backend.</p>
 
