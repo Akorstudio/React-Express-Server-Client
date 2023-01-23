@@ -23,7 +23,7 @@ pipeline {
 
         stage('Build-Client') {
           steps {
-            sh 'docker build --rm -t re-client-dev -f ./client/Dockerfile.dev ./client'
+            sh 'docker build --rm -t alexgk/re-client-dev:latest -f ./client/Dockerfile.dev ./client'
           }
         }
 
