@@ -32,7 +32,7 @@ pipeline {
 
     stage('Log into DHub') {
       environment {
-        DOCKERHUB_CREDENTIALS = 'dockerhub'
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
       }
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
