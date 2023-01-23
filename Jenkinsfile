@@ -40,8 +40,19 @@ pipeline {
     }
 
     stage('Push server-dev') {
-      steps {
-        sh 'docker push alexgk/re-server-dev:latest'
+      parallel {
+        stage('Push server-dev') {
+          steps {
+            sh 'docker push alexgk/re-server-dev:latest'
+          }
+        }
+
+        stage('Push client-dev') {
+          steps {
+            sh 'docker push alexgk/re-client-dev:latest'
+          }
+        }
+
       }
     }
 
