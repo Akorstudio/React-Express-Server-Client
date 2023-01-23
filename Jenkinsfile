@@ -17,7 +17,7 @@ pipeline {
       parallel {
         stage('Build-Server') {
           steps {
-            sh 'docker build -t re-server-dev -f ./server/Dockerfile.dev ./server'
+            sh 'docker build -t alexgk/re-server-dev:latest -f ./server/Dockerfile.dev ./server'
           }
         }
 
