@@ -14,8 +14,19 @@ pipeline {
     }
 
     stage('Build-Server') {
-      steps {
-        sh 'docker build -t re-server-dev -f ./server/Dockerfile.dev ./server'
+      parallel {
+        stage('Build-Server') {
+          steps {
+            sh 'docker build -t re-server-dev -f ./server/Dockerfile.dev ./server'
+          }
+        }
+
+        stage('Build-Client') {
+          steps {
+            sh 'docker build --rm -t re-client-dev -f ./client/Dockerfile.dev ./client'
+          }
+        }
+
       }
     }
 
