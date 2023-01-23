@@ -7,5 +7,54 @@ pipeline {
       }
     }
 
+    stage('Log') {
+      steps {
+        sh 'ls -la'
+      }
+    }
+
+    stage('Build apps') {
+      parallel {
+        stage('Build-Server') {
+          steps {
+            sh 'docker build -t alexgk/re-server-dev:latest -f ./server/Dockerfile.dev ./server'
+          }
+        }
+
+        stage('Build-Client') {
+          steps {
+            sh 'docker build --rm -t alexgk/re-client-dev:latest -f ./client/Dockerfile.dev ./client'
+          }
+        }
+
+      }
+    }
+
+    stage('Log into DHub') {
+      environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+      }
+      steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      }
+    }
+
+    stage('Push server-dev') {
+      parallel {
+        stage('Push server-dev') {
+          steps {
+            sh 'docker push alexgk/re-server-dev:latest'
+          }
+        }
+
+        stage('Push client-dev') {
+          steps {
+            sh 'docker push alexgk/re-client-dev:latest'
+          }
+        }
+
+      }
+    }
+
   }
 }
