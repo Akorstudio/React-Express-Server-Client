@@ -41,7 +41,7 @@ pipeline {
 
     stage('Push server-dev') {
       steps {
-        sh 'docker push re-server-dev:latest'
+        sh 'docker push alexgk/re-server-dev:latest'
       }
     }
 
