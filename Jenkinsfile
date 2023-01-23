@@ -13,7 +13,7 @@ pipeline {
       }
     }
 
-    stage('Build-Server') {
+    stage('Build apps') {
       parallel {
         stage('Build-Server') {
           steps {
